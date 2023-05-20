@@ -1,0 +1,23 @@
+import pandas as pd
+
+data = {
+    'A': [1, 1, 1, 1],
+    'B': [2, 2, 2, 1],
+    'C': [3, 3, 4, 1],
+    'D': [4, 3, 4, 1]
+}
+
+df = pd.DataFrame(data)
+
+# find the first column of the largest value
+df.idxmax(axis=1) 
+
+# find the last column of the largest value
+df.iloc[:, ::-1].idxmax(axis=1) 
+
+# find all columns of the largest value for any future application
+maxes = df.eq(df.max(axis=1), axis=0) 
+maxes.dot(maxes.columns + ', ').str.rstrip(', ')
+
+# find the last column of the smallest value
+df.iloc[:, ::-1].idxmin(axis=1)

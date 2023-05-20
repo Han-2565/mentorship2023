@@ -1,0 +1,31 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if not nums:
+            return [-1, -1]
+        
+        result = []
+        result.append(self.BinarySearch(nums, target, first=True))
+        result.append(self.BinarySearch(nums, target, first=False))
+
+        return result
+
+    def BinarySearch(self, nums: List[int], target: int, first: bool):
+        index = -1
+        low = 0
+        high = len(nums) - 1
+
+        while(low <= high):
+            mid = (low + high) // 2
+
+            if nums[mid] == target:
+                index = mid
+                if first: # to find the first target, go to lower subarray
+                    high = mid - 1
+                else: # to find the last target, go to higher subarray
+                    low = mid + 1
+            elif nums[mid] > target:
+                high = mid - 1
+            elif nums[mid] < target:
+                low = mid + 1
+        
+        return index
