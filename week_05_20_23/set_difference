@@ -1,1 +1,1 @@
-
+Compare the columns between two .csv files. For example in the first column, find the elements that csv_1 has while csv_2 does not have.
